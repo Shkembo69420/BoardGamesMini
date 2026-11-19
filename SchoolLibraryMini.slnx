@@ -1,3 +1,5 @@
 <Solution>
-  <Project Path="SchollLibraryMini.Web/SchollLibraryMini.Web.csproj" Id="1f624224-ddd6-45d7-9d90-a60eefd7eee8" />
+  <Project Path="BoardGamesMini.Data/BoardGamesMini.Data.csproj" />
+  <Project Path="BoardGamesMini.Services/BoardGamesMini.Services.csproj" />
+  <Project Path="SchollLibraryMini.Web/SchollLibraryMini.Web.csproj" />
 </Solution>
