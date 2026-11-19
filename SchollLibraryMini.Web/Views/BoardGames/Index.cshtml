@@ -1,0 +1,44 @@
+@model IEnumerable<BoardGamesMini.Data.Entities.BoardGame>
+
+@{
+    ViewData["Title"] = "Настолни игри";
+}
+
+<h1>Настолни игри</h1>
+
+<p>
+    <a asp-controller="BoardGames" asp-action="Create" class="btn btn-primary">
+        Добави настолна игра
+    </a>
+</p>
+
+@if (!Model.Any())
+{
+    <p>Все още няма добавени настолни игри.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Име</th>
+                <th>Категория</th>
+                <th>Минимален брой играчи</th>
+                <th>Максимален брой играчи</th>
+                <th>Описание</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var game in Model)
+            {
+                <tr>
+                    <td>@game.Name</td>
+                    <td>@game.Category</td>
+                    <td>@game.MinPlayers</td>
+                    <td>@game.MaxPlayers</td>
+                    <td>@game.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
