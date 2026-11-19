@@ -1,4 +1,6 @@
 using BoardGamesMini.Data;
+using BoardGamesMini.Services;
+using BoardGamesMini.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace SchollLibraryMini.Web
@@ -13,6 +15,8 @@ namespace SchollLibraryMini.Web
 
             builder.Services.AddDbContext<BoardGamesDbContext>(options =>
                 options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddScoped<IBoardGameService, BoardGameService>();
 
 
             var app = builder.Build();

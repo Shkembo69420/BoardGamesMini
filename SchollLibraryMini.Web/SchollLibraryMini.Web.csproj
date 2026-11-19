@@ -13,5 +13,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <ProjectReference Include="..\BoardGamesMini.Data\BoardGamesMini.Data.csproj" />
+    <ProjectReference Include="..\BoardGamesMini.Services\BoardGamesMini.Services.csproj" />
   </ItemGroup>
 </Project>

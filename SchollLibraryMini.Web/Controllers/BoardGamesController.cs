@@ -1,23 +1,20 @@
-using BoardGamesMini.Data;
+using BoardGamesMini.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SchollLibraryMini.Web.Controllers;
 
 public class BoardGamesController : Controller
 {
-    private readonly BoardGamesDbContext _context;
+    private readonly IBoardGameService _boardGameService;
 
-    public BoardGamesController(BoardGamesDbContext context)
+    public BoardGamesController(IBoardGameService boardGameService)
     {
-        _context = context;
+        _boardGameService = boardGameService;
     }
 
     public IActionResult Index()
     {
-        var boardGames = _context.BoardGames
-            .OrderBy(game => game.Name)
-            .ToList();
-
+        var boardGames = _boardGameService.GetAll();
         return View(boardGames);
     }
 
