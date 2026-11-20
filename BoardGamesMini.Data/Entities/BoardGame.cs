@@ -10,10 +10,6 @@ public class BoardGame : IValidatableObject
     [StringLength(100, ErrorMessage = "Името може да бъде до 100 символа.")]
     public string Name { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "Категорията е задължителна.")]
-    [StringLength(50, ErrorMessage = "Категорията може да бъде до 50 символа.")]
-    public string Category { get; set; } = string.Empty;
-
     [Range(1, int.MaxValue, ErrorMessage = "Минималният брой играчи трябва да е положителен.")]
     public int MinPlayers { get; set; }
 
@@ -23,6 +19,12 @@ public class BoardGame : IValidatableObject
     [Required(ErrorMessage = "Описанието е задължително.")]
     [StringLength(1000, ErrorMessage = "Описанието може да бъде до 1000 символа.")]
     public string Description { get; set; } = string.Empty;
+
+    public int CategoryId { get; set; }
+    public Category Category { get; set; } = null!;
+
+    public int PublisherId { get; set; }
+    public Publisher Publisher { get; set; } = null!;
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
