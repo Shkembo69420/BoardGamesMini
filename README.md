@@ -1,31 +1,28 @@
 # BoardGamesMini
 
-Учебно ASP.NET Core MVC приложение за каталог на настолни игри.
+Учебно ASP.NET Core MVC приложение за настолни игри.
 
 ## Проекти
-- `BoardGamesMini.Data` – моделът `BoardGame`, `BoardGamesDbContext`, конфигурацията и миграциите.
-- `SchollLibraryMini.Web` – MVC приложението, контролерите и Razor изгледите.
-- `BoardGamesMini.Services` – интерфейсът `IBoardGameService` и реализацията `BoardGameService`.
+- `BoardGamesMini.Data` – Entity класове, `BoardGamesDbContext`, начални данни и EF Core миграции.
+- `BoardGamesMini.Services` – `IBoardGameService` и `BoardGameService`.
+- `SchollLibraryMini.Web` – MVC приложение, контролери, Razor изгледи и Dependency Injection.
 
-## Технологии
-.NET 10, ASP.NET Core MVC, Entity Framework Core 10.0.13 и SQLite. Запазени са framework и database provider-ът от първоначалното repository.
+## Entities и връзки
+- `BoardGame` – име, минимален/максимален брой играчи, описание, `CategoryId` и `PublisherId`.
+- `Category` – име, описание и колекция от настолни игри.
+- `Publisher` – име, държава, уебсайт и колекция от настолни игри.
 
-## Подготовка на базата
-В Visual Studio отвори Tools → NuGet Package Manager → Package Manager Console и изпълни:
+Връзките са One-to-Many: една категория има много настолни игри, както и един издател може да има много настолни игри.
+
+## Стартиране
+1. Отворете `SchoolLibraryMini.slnx` във Visual Studio.
+2. Възстановете NuGet пакетите и изпълнете Build Solution.
+3. В Package Manager Console изпълнете:
 
 ```powershell
 Update-Database -Project BoardGamesMini.Data -StartupProject SchollLibraryMini.Web -Context BoardGamesDbContext
 ```
 
-Миграцията `InitialCreate` създава таблицата `BoardGames`. Не изпълнявай повторно `Add-Migration InitialCreate`, защото миграцията вече е включена.
+Миграцията `AddCategoriesAndPublishers` запазва старите записи и превръща текстовата категория в реална връзка към `Categories`. След това стартирайте `SchollLibraryMini.Web` и отворете `/BoardGames`.
 
-## Стартиране
-Задай `SchollLibraryMini.Web` като Startup Project и стартирай приложението. В Development среда `DemoData.Seed` добавя три примерни игри, ако таблицата е празна. Отвори `/BoardGames`.
-
-## Реализирано до текущия учебен етап
-- Модел и бизнес валидации за положителен брой играчи и максимум не по-малък от минимума.
-- EF Core контекст, Fluent API и начална миграция.
-- Примерни данни и Razor таблица със списък на настолните игри.
-- Сервизен слой с `GetAll()` и Dependency Injection.
-
-Търсене, филтриране и пълните CRUD операции са следващи етапи и умишлено не са добавени тук.
+В Development среда `DemoData.SeedReferenceData` добавя липсващи категории и издатели, а `DemoData.Seed` добавя примерните игри, ако таблицата е празна.

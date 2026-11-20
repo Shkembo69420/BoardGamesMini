@@ -25,6 +25,7 @@ else
                 <th>Категория</th>
                 <th>Минимален брой играчи</th>
                 <th>Максимален брой играчи</th>
+                <th>Издател</th>
                 <th>Описание</th>
             </tr>
         </thead>
@@ -33,9 +34,10 @@ else
             {
                 <tr>
                     <td>@game.Name</td>
-                    <td>@game.Category</td>
+                    <td>@game.Category.Name</td>
                     <td>@game.MinPlayers</td>
                     <td>@game.MaxPlayers</td>
+                    <td>@game.Publisher.Name</td>
                     <td>@game.Description</td>
                 </tr>
             }
